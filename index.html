@@ -358,7 +358,44 @@
         </div>
     </div>
 
+    <h2>Prompt generation</h2>
+    <p>
+        We prompt Mistral-7B-Instruct-v0.2 to generate the description prompts used for training our models. Here is the full prompt used to train <b>T3-emotional</b>.
+    </p>
+    <code style="max-height: 500px; overflow-y: auto; background-color: #2d2d2d; color: #c792ea; border-radius: 8px; padding: 15px; display: block; padding: 15px;">
+        You will be given 7 descriptive keywords related to an audio sample of [speaker_name]'s speech. These keywords include:<br>
+        1. The gender (male, female)<br>
+        2. The level of reverberation (very distant-sounding, distant-sounding, slightly distant-sounding, slightly close-sounding, very close-sounding)<br>
+        3. The amount of noise in the sample (extremely noisy, very noisy, noisy, slightly noisy, almost no noise, very clear)<br>
+        4. The tone of the speaker's voice (very monotone, monotone, slightly expressive and animated, expressive and animated, very expressive and animated)<br>
+        5. The pace of the speaker's delivery (very slowly, slowly, slightly slowly, moderate speed, slightly fast, fast, very fast)<br>
+        6. The pitch of the speaker's voice (very low-pitch, low-pitch, slightly low-pitch, moderate pitch, slightly high-pitch, high-pitch, very high-pitch)<br>
+        7. The emotion of the speaker's voice. This could be one of 6: Happy, Sad, Angry, Surprised, Helpful or Neutral.<br>
+        This will also include the intensity of the emotion (for example:<br>
+        - neutral emotion: there is no particular emotion<br>
+        - high intensity sad emotion: the speaker is sad and the intensity of the emotion is high<br>
+        - medium intensity happy emotion: the speaker sounds happy and the intensity of that emotion is medium<br>
+        - low intensity surprised emotion: the speaker sounds a little bit surprised<br>
+        - very high intensity helpful emotion: the speaker sounds incredibly helpful<br>
+        ...)<br><br>
 
+        Your task is to create a text description using these keywords that accurately describes the speech sample.
+        If the amount of noise is 'very noisy' and the level of reverberation is 'very distant-sounding', you must include terms such as 'very poor recording' or `very bad recording` in the description.
+        Likewise, if the amount of noise is 'very clear' and the level of reverberation is 'very close-sounding', you must include terms like 'very good recording' or `excellent recording` in the description.
+        And you must always specify what the emotion of the speaker is, and the intensity of that emotion. For example, if the emotion of the speaker is "low intensity happy emotion", you must include terms like `slightly happy sounding` in the description.
+        Do not add extra details beyond what has been provided above. You can change the order of keywords, and replace synonymous terms.
+        <br><br>
+        For example, given the following keywords: 'female', 'slightly distant-sounding', 'noisy', 'very expressive and animated', 'very slowly', 'moderate pitch' and 'high intensity angry emotion' a valid description would be: '[speaker_name] speaks very slowly but has a very animated delivery. She sounds noticably angry. The recording is noisy and there is some roominess.'
+        Another valid description would be: 'In a noisy room, [speaker_name] delivers a very animated and expressive speech, at a very slow pace. [speaker_name] is audibly angry.'
+        Another valid description would be: '[speaker_name] enunciates a very expressive speech while clearly angry. Her voice is slightly distant-sounding, with some background noise present. [speaker_name] speaks very slowly with a moderate pitch but a very expressive tone.'
+        <br><br>
+        Note that the intensity of the speaker's emotion is sometimes specifically mentioned. This should not be confused with the speaker's tone. So, for example: the speaker might
+        be 'very expressive and animated' and have 'low intensity sad emotion'. In which case you have to describe the tone of voice as being expressive (e.g. '[speaker_name]'s tone is highly dynamic') while the intensity of the emotion is low (e.g. '[speaker_name] sounds a little bit sad')
+        <br><br>
+        Ensure that the generated description is grammatically correct, easy to understand, and concise. Only return one and only one description.
+        <br><br>
+        For the keywords: '[gender]', '[reverberation]', '[sdr_noise]', '[speech_monotony]', '[speaking_rate]', '[pitch]' and '[emotion]' the corresponding description is:
+    </code>
     <h2>Just for fun</h2>
     <div class="audio-container">
         <div class="audio-title">1000 F0 Contours</div>
