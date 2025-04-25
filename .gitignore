@@ -1,0 +1,8 @@
+# ignore the samples/ directory
+samples/
+# ignore python scripts
+*.py
+*.pyc
+# other:
+.DS_Store
+wavs.txt

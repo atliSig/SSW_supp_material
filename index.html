@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Demo Page</title>
+    <title>RepeaTTS: Towards Feature Discovery through Repeated Fine-Tuning</title>
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,7 +16,7 @@
             background-color: #f9f9f9;
         }
         
-        h1 {
+        h1{
             text-align: center;
             margin-bottom: 30px;
             color: #2c3e50;
@@ -36,10 +37,13 @@
         }
         
         .audio-title {
-            font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 10px;
             color: #3498db;
+        }
+
+        .audio-container > .audio-title{
+            margin-top: 0;
         }
         
         .audio-description {
@@ -57,46 +61,372 @@
             font-size: 0.9rem;
             color: #7f8c8d;
         }
+
     </style>
 </head>
 <body>
-    <h1>Audio Demos</h1>
-    
+    <div class="header" style="text-align: justify; max-width: 800px; margin: 0 auto;">
+        <h1 style="font-size: 3rem;">🔁 RepeaTTS</h1>
+        <h1>Towards Feature Discovery through Repeated Fine-Tuning</h1>
+        <p>
+            A <i>Prompt-based</i> Text-To-Speech model allows a user to control different aspects of speech, 
+            such as speaking rate and perceived gender, through natural language instruction. Although user-friendly, 
+            such approaches are on one hand constrained: control is limited to acoustic features learned by the model 
+            during training, and too flexible on the other: the same inputs yields uncontrollable variation that are 
+            reflected in the corpus statistics. 
+
+            <br><br>
+            
+            We investigate a novel fine-tuning regime to address both of these issues at the same time by exploiting 
+            the uncontrollable variance of the model. Through principal component analysis of thousands of synthesised 
+            samples, we determine latent features that account for the highest proportion of the output variance and 
+            incorporate them as new labels for secondary fine-tuning. We evaluate the proposed methods on two models 
+            trained on an expressive Icelandic speech corpus, one with emotional disclosure and one without. In the 
+            case of the model without emotional disclosure, the method yields both continuous and discrete features 
+            that improve overall controllability of the model. 
+        </p>
+    </div>
+    <h2 style="text-align: center;">Supplementary material and samples</h2>
+    </div>
+
+    <h2>Emotional Synthesis</h2>
+    <p>
+        These samples are generated using <b>T3-emotional</b>. We synthesise the same text for all speakers and emotions.
+        The emotional intensity is set to 3 of 5, so in each case the model is prompted with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [emotion].</i>
+    </p>
+
     <div class="audio-container">
-        <div class="audio-title">Demo 1: Sample Audio</div>
-        <div class="audio-description">
-            This is the first audio sample. It demonstrates the key features of our audio processing algorithm.
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+            </div>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
-        <audio controls>
-            <source src="audio/sample1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>        
+            <div>Freyja</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+            <div>Anders</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+            <div>Astrid</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+            <div>Bjorn</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Neutral</div>
+            <div>Happy</div>
+            <div>Angry</div>
+            <div>Surprised</div>
+            <div>Sad</div>
+            <div>Helpful</div>
+
+            <div>Frida</div>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_5_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_8_0.wav" type="audio/wav"></audio>
+        </div>
     </div>
     
-    <div class="audio-container">
-        <div class="audio-title">Demo 2: Processed Audio</div>
-        <div class="audio-description">
-            This example shows the results after applying our enhancement techniques to the original audio.
-        </div>
-        <audio controls>
-            <source src="audio/sample2.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
+    <h2>Emotional Intensity</h2>
+    <p>
+        Emotional intensity labels are included in the training prompts for <b>T3-emotional</b>, which allow the model to synthesise emotions on a 5 point scale.
+        This is done by prompting the model with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [intensity] [emotion]</i>
+        where [intensity] can be, for example <i>extremely</i>, <i>somewhat</i>, <i>slightly</i> etc.
+    </p>
     
     <div class="audio-container">
-        <div class="audio-title">Demo 3: Comparison</div>
+        <h3 class="audio-title">Sadness</h3>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Very Low</div>
+            <div>Low</div>
+            <div>Medium</div>
+            <div>High</div>
+            <div>Very High</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_3_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_4_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_5_0.wav" type="audio/wav"></audio>
+
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_3_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_4_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_5_0.wav" type="audio/wav"></audio>
+
+        </div>
+    </div>
+    <div class="audio-container">
+        <h3 class="audio-title">Happiness</h3>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Very Low</div>
+            <div>Low</div>
+            <div>Medium</div>
+            <div>High</div>
+            <div>Very High</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_8_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_9_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_10_0.wav" type="audio/wav"></audio>
+
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_6_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_7_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_8_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_9_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_10_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <h3 class="audio-title">Anger</h3>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Very Low</div>
+            <div>Low</div>
+            <div>Medium</div>
+            <div>High</div>
+            <div>Very High</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_11_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_12_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_13_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_14_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_15_0.wav" type="audio/wav"></audio>
+
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_11_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_12_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_13_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_14_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_15_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <h3 class="audio-title">Surprisal</h3>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Very Low</div>
+            <div>Low</div>
+            <div>Medium</div>
+            <div>High</div>
+            <div>Very High</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_16_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_17_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_18_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_19_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_20_0.wav" type="audio/wav"></audio>
+
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_16_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_17_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_18_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_19_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_20_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <div class="audio-container">
+        <h3 class="audio-title">Helpfulness</h3>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <div></div>
+            <div>Very Low</div>
+            <div>Low</div>
+            <div>Medium</div>
+            <div>High</div>
+            <div>Very High</div>
+
+            <div>Ingrid</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_21_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_22_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_23_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_24_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_25_0.wav" type="audio/wav"></audio>
+
+            <div>Leif</div>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_21_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_22_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_23_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_24_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_25_0.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+
+    <h2>Just for fun</h2>
+    <div class="audio-container">
+        <div class="audio-title">1000 F0 Contours</div>
         <div class="audio-description">
-            A comparison between the original and processed audio samples. Notice the improved clarity and reduced noise.
+            With default generation parameters, the model is highly consistent for fixed inputs. The figure below shows an overlay of 1,000 generated samples
+            in a neutral speaking test, and the corresponding overlayed audio. 
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center;">
+            <div>
+            <img src="plots/individual_f0_contours.png" alt="Individual F0 Contours" style="width: 100%; margin-bottom: 5px;">
+            <p style="text-align: center; font-size: 0.9rem; color: #555;">Density of 1000 F0 contours</p>
+            </div>
         </div>
         <audio controls>
-            <source src="audio/sample3.mp3" type="audio/mpeg">
+            <source src="used_samples/for_fun/overlay.wav" type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </div>
 
+    <div class="audio-container">
+        <div class="audio-title">Ambiguous speaker labels</div>
+        <div class="audio-description">
+            Prompting the model with ambiguous speaker labels, such as <i>the man</i>, <i>the woman</i> or <i>the person</i>,
+            sometimes yields voices that are distinct from the training voices.
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 20px;">
+            <div style="min-width: 50px;">The woman</div>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_13_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_14_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_10_0.wav" type="audio/wav">
+            </audio>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 20px;">
+            <div style="min-width: 50px;">The man</div>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The man_txt_1_desc_14_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The man_txt_1_desc_10_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The man_txt_3_desc_4_0.wav" type="audio/wav">
+            </audio>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 10px;">
+            <div style="min-width: 50px;">The person</div>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_10_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_13_0.wav" type="audio/wav">
+            </audio>
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20man_txt_3_desc_4_0.wav" type="audio/wav">
+            </audio>
+        </div>
+    </div>
+
+
+
     <footer>
-        Audio Demo Page &copy; 2025
     </footer>
 </body>
 </html>
