@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Demo Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .audio-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .audio-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .audio-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        .audio-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        audio {
+            width: 100%;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Demos</h1>
+    
+    <div class="audio-container">
+        <div class="audio-title">Demo 1: Sample Audio</div>
+        <div class="audio-description">
+            This is the first audio sample. It demonstrates the key features of our audio processing algorithm.
+        </div>
+        <audio controls>
+            <source src="audio/sample1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="audio-container">
+        <div class="audio-title">Demo 2: Processed Audio</div>
+        <div class="audio-description">
+            This example shows the results after applying our enhancement techniques to the original audio.
+        </div>
+        <audio controls>
+            <source src="audio/sample2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="audio-container">
+        <div class="audio-title">Demo 3: Comparison</div>
+        <div class="audio-description">
+            A comparison between the original and processed audio samples. Notice the improved clarity and reduced noise.
+        </div>
+        <audio controls>
+            <source src="audio/sample3.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <footer>
+        Audio Demo Page &copy; 2025
+    </footer>
+</body>
+</html>
