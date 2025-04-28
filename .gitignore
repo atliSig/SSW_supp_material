@@ -6,3 +6,4 @@ samples/
 # other:
 .DS_Store
 *.txt
+.vscode/

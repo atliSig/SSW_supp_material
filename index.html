@@ -13,7 +13,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #e9fdff;
         }
         
         h1{
@@ -79,6 +79,13 @@
             top: 0;
         }
 
+        .audio-side-description{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -108,59 +115,57 @@
 
     <h2 class="section-heading">Checkpoints and Datasets</h2>
     <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
-        <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
+        <div style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
             <div class="audio-title">Model Checkpoints</div>
-            <div class="audio-description">
-                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
-                    We make all model checkpoints available on HuggingFace. <b>EmotiveIcelandic</b> corresponds to <b>T3-emotional</b> in our paper.
-                    The <b>RepeatTTS</b> series of models corresponds to the different fine-tuned versions of <b>T3</b> in our paper. Follow installation 
-                    instructions on HF to setup the models.</p>
-                
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/atlithor/EmotiveIcelandic" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        EmotiveIcelandic
-                    </a>
-                </div>
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-1" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        RepeaTTS-level-1
-                    </a>
-                </div>
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-2" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        RepeaTTS-level-2
-                    </a>
-                </div>
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-3" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        RepeaTTS-level-3
-                    </a>
+            <div class="audio-container">
+                <div class="audio-description">
+                    <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
+                        We make all model checkpoints available on HuggingFace. <b>EmotiveIcelandic</b> corresponds to <b>T3-emotional</b> in our paper.
+                        The <b>RepeatTTS</b> series of models corresponds to the different fine-tuned versions of <b>T3</b> in our paper. Follow installation 
+                        instructions on HF to setup the models.</p>
+                    
+                    <div>
+                        <span style="margin-right: 5px;">🤗</span>
+                        <a href="https://huggingface.co/atlithor/EmotiveIcelandic" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                            EmotiveIcelandic
+                        </a>
+                    </div>
+                    <div>
+                        <span style="margin-right: 5px;">🤗 RepeatTTS</span>
+                        <a href="https://huggingface.co/atlithor/RepeaTTS-level-1" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold; margin-right: 10px;">
+                            Level-1
+                        </a>
+                        <a href="https://huggingface.co/atlithor/RepeaTTS-level-2" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold; margin-right: 10px;">
+                            Level-2
+                        </a>
+                        <a href="https://huggingface.co/atlithor/RepeaTTS-level-3" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                            Level-3
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
+        <div style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
             <div class="audio-title">Datasets</div>
-            <div class="audio-description">
-                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
-                    All our datasets are based on an emotional Icelandic open-source corpus, with the addition of descriptive prompts for every utterance.
-                    <b>talromur3 with prompts</b> includes information about the rendered emotion, while <b>talromur3 without emotions</b> does not.
-                </p>
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/datasets/atlithor/talromur3_with_prompts" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        talromur3_with_prompts
-                    </a>
-                </div>
-                <div>
-                    <span style="margin-right: 5px;">🤗</span>
-                    <a href="https://huggingface.co/datasets/atlithor/talromur3_without_emotions" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                        talromur3_without_emotions
-                    </a>
-                    
+            <div class="audio-container">
+                <div class="audio-description">
+                    <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
+                        All our datasets are based on an emotional Icelandic open-source corpus, with the addition of descriptive prompts for every utterance.
+                        <b>talromur3 with prompts</b> includes information about the rendered emotion, while <b>talromur3 without emotions</b> does not.
+                    </p>
+                    <div>
+                        <span style="margin-right: 5px;">🤗</span>
+                        <a href="https://huggingface.co/datasets/atlithor/talromur3_with_prompts" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                            talromur3_with_prompts
+                        </a>
+                    </div>
+                    <div>
+                        <span style="margin-right: 5px;">🤗</span>
+                        <a href="https://huggingface.co/datasets/atlithor/talromur3_without_emotions" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                            talromur3_without_emotions
+                        </a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,9 +177,9 @@
         The emotional intensity is set to 3 of 5, so in each case the model is prompted with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [emotion].</i>
     </p>
 
+    <h3 class='audio-title'>Ingrid</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
@@ -182,7 +187,6 @@
             <div>Sad</div>
             <div>Helpful</div>
 
-            <div>Ingrid</div>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -191,16 +195,17 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Ingrid_txt_3_desc_8_0.wav" type="audio/wav"></audio>
             </div>
     </div>
+
+    <h3 class='audio-title'>Leif</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
             <div>Surprised</div>
             <div>Sad</div>
             <div>Helpful</div>
-            <div>Leif</div>
+
             <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -209,16 +214,17 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Leif_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class='audio-title'>Freya</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
             <div>Surprised</div>
             <div>Sad</div>
-            <div>Helpful</div>        
-            <div>Freyja</div>
+            <div>Helpful</div>
+
             <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -227,16 +233,17 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Freya_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class='audio-title'>Anders</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
             <div>Surprised</div>
             <div>Sad</div>
             <div>Helpful</div>
-            <div>Anders</div>
+
             <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -245,16 +252,17 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Anders_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class='audio-title'>Astrid</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
             <div>Surprised</div>
             <div>Sad</div>
             <div>Helpful</div>
-            <div>Astrid</div>
+
             <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_2_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -263,16 +271,17 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Astrid_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class='audio-title'>Bjorn</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
             <div>Surprised</div>
             <div>Sad</div>
             <div>Helpful</div>
-            <div>Bjorn</div>
+
             <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -281,9 +290,10 @@
             <audio controls><source src="used_samples/t3_all_emotions/utts/Bjorn_txt_3_desc_8_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class='audio-title'>Frida</h3>
     <div class="audio-container">
-        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; text-align: center;">
-            <div></div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div>Neutral</div>
             <div>Happy</div>
             <div>Angry</div>
@@ -291,7 +301,6 @@
             <div>Sad</div>
             <div>Helpful</div>
 
-            <div>Frida</div>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_5_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_all_emotions/utts/Frida_txt_3_desc_6_0.wav" type="audio/wav"></audio>
@@ -307,9 +316,9 @@
         This is done by prompting the model with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [intensity] [emotion]</i>
         where [intensity] can be, for example, <i>extremely</i>, <i>somewhat</i>, <i>slightly</i> etc.
     </p>
-    
+
+    <h3 class="audio-title">Sadness</h3>
     <div class="audio-container">
-        <h3 class="audio-title">Sadness</h3>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div></div>
             <div>Very Low</div>
@@ -318,14 +327,15 @@
             <div>High</div>
             <div>Very High</div>
 
-            <div>Ingrid</div>
+            <div class="audio-side-description">Ingrid</div>
+            
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_2_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_3_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_4_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_5_0.wav" type="audio/wav"></audio>
 
-            <div>Leif</div>
+            <div class="audio-side-description">Leif</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_1_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_2_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_3_0.wav" type="audio/wav"></audio>
@@ -334,8 +344,9 @@
 
         </div>
     </div>
+
+    <h3 class="audio-title">Happiness</h3>
     <div class="audio-container">
-        <h3 class="audio-title">Happiness</h3>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div></div>
             <div>Very Low</div>
@@ -344,14 +355,14 @@
             <div>High</div>
             <div>Very High</div>
 
-            <div>Ingrid</div>
+            <div class="audio-side-description">Ingrid</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_6_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_7_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_8_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_9_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_10_0.wav" type="audio/wav"></audio>
 
-            <div>Leif</div>
+            <div class="audio-side-description">Leif</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_6_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_7_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_8_0.wav" type="audio/wav"></audio>
@@ -359,8 +370,9 @@
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_10_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class="audio-title">Anger</h3>
     <div class="audio-container">
-        <h3 class="audio-title">Anger</h3>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div></div>
             <div>Very Low</div>
@@ -369,14 +381,14 @@
             <div>High</div>
             <div>Very High</div>
 
-            <div>Ingrid</div>
+            <div class="audio-side-description">Ingrid</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_11_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_12_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_13_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_14_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_15_0.wav" type="audio/wav"></audio>
 
-            <div>Leif</div>
+            <div class="audio-side-description">Leif</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_11_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_12_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_13_0.wav" type="audio/wav"></audio>
@@ -384,8 +396,9 @@
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_15_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class="audio-title">Surprisal</h3>
     <div class="audio-container">
-        <h3 class="audio-title">Surprisal</h3>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div></div>
             <div>Very Low</div>
@@ -394,14 +407,14 @@
             <div>High</div>
             <div>Very High</div>
 
-            <div>Ingrid</div>
+            <div class="audio-side-description">Ingrid</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_16_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_17_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_18_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_19_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_20_0.wav" type="audio/wav"></audio>
 
-            <div>Leif</div>
+            <div class="audio-side-description">Leif</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_16_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_17_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_18_0.wav" type="audio/wav"></audio>
@@ -409,8 +422,9 @@
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_20_0.wav" type="audio/wav"></audio>
         </div>
     </div>
+
+    <h3 class="audio-title">Helpfulness</h3>
     <div class="audio-container">
-        <h3 class="audio-title">Helpfulness</h3>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
             <div></div>
             <div>Very Low</div>
@@ -419,14 +433,14 @@
             <div>High</div>
             <div>Very High</div>
 
-            <div>Ingrid</div>
+            <div class="audio-side-description">Ingrid</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_21_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_22_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_23_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_24_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Ingrid_txt_2_desc_25_0.wav" type="audio/wav"></audio>
 
-            <div>Leif</div>
+            <div class="audio-side-description">Leif</div>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_21_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_22_0.wav" type="audio/wav"></audio>
             <audio controls><source src="used_samples/t3_ingrid_leif_emotional_intensity_1/utts/Leif_txt_2_desc_23_0.wav" type="audio/wav"></audio>
@@ -491,41 +505,41 @@
             <div>k=200</div>
             <div>k=300</div>
             <div>t=1.0</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
             <div>t=1.1</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
             <div>t=1.2</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
             <div>t=1.3</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
             <div>t=1.4</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
             <div>t=1.5</div>
-            <audio controls><source src="used_samples/hparam_search/k_50_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_100_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_150_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_200_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
-            <audio controls><source src="used_samples/hparam_search/k_300_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_50_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_100_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_150_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_200_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/k_300_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
         </div>
     </div>
     <h2 class="section-heading">Just for fun</h2>
