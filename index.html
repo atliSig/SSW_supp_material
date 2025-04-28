@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RepeaTTS: Towards Feature Discovery through Repeated Fine-Tuning</title>
-    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='80'>🔁</text></svg>">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -62,6 +62,23 @@
             color: #7f8c8d;
         }
 
+        .section-heading {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-heading::before {
+            content: "•";
+            color: #3498db;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -89,7 +106,33 @@
     <h2 style="text-align: center;">Supplementary material and samples</h2>
     </div>
 
-    <h2>Emotional Synthesis</h2>
+    <h2 class="section-heading">Checkpoint and Dataset</h2>
+    <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+        <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
+            <div class="audio-title">Model Checkpoint</div>
+            <div class="audio-description">
+                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">We make a hugging-face checkpoint, corresponding to T3-emotional, available on the HF hub. Follow installation instructions on HF to setup the model.</p>
+                <span style="margin-right: 5px;">🔗</span>
+                <a href="https://huggingface.co/atlithor/EmotiveIcelandic" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                    EmotiveIcelandic on HuggingFace
+                </a>
+            </div>
+        </div>
+        <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
+            <div class="audio-title">Dataset</div>
+            <div class="audio-description">
+                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
+                    This is the dataset we use to fine-tune all our models. It is based on an Icelandic open-source corpus, with the addition of descriptive prompts for every utterance.
+                </p>
+                <span style="margin-right: 5px;">🔗</span>
+                <a href="https://huggingface.co/datasets/atlithor/talromur3_with_prompts" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                    talromur3_with_prompts on HuggingFace
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-heading">Emotional Synthesis</h2>
     <p>
         These samples are generated using <b>T3-emotional</b>. We synthesise the same text for all speakers and emotions.
         The emotional intensity is set to 3 of 5, so in each case the model is prompted with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [emotion].</i>
@@ -224,11 +267,11 @@
         </div>
     </div>
     
-    <h2>Emotional Intensity</h2>
+    <h2 class="section-heading">Emotional Intensity</h2>
     <p>
         Emotional intensity labels are included in the training prompts for <b>T3-emotional</b>, which allow the model to synthesise emotions on a 5 point scale.
         This is done by prompting the model with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [intensity] [emotion]</i>
-        where [intensity] can be, for example <i>extremely</i>, <i>somewhat</i>, <i>slightly</i> etc.
+        where [intensity] can be, for example, <i>extremely</i>, <i>somewhat</i>, <i>slightly</i> etc.
     </p>
     
     <div class="audio-container">
@@ -358,11 +401,11 @@
         </div>
     </div>
 
-    <h2>Prompt generation</h2>
+    <h2 class="section-heading">Prompt generation</h2>
     <p>
         We prompt Mistral-7B-Instruct-v0.2 to generate the description prompts used for training our models. Here is the full prompt used to train <b>T3-emotional</b>.
     </p>
-    <code style="max-height: 500px; overflow-y: auto; background-color: #2d2d2d; color: #c792ea; border-radius: 8px; padding: 15px; display: block; padding: 15px;">
+    <code style="max-height: 500px; overflow-y: auto; background-color: #2d2d2d; color: #3498db; border-radius: 8px; display: block; padding: 25px;">
         You will be given 7 descriptive keywords related to an audio sample of [speaker_name]'s speech. These keywords include:<br>
         1. The gender (male, female)<br>
         2. The level of reverberation (very distant-sounding, distant-sounding, slightly distant-sounding, slightly close-sounding, very close-sounding)<br>
@@ -396,9 +439,64 @@
         <br><br>
         For the keywords: '[gender]', '[reverberation]', '[sdr_noise]', '[speech_monotony]', '[speaking_rate]', '[pitch]' and '[emotion]' the corresponding description is:
     </code>
-    <h2>Just for fun</h2>
+
+    <h2 class="section-heading">Hyperparameter Search</h2>
     <div class="audio-container">
-        <div class="audio-title">1000 F0 Contours</div>
+        <div class="audio-title">Grid Search for k and t</div>
+        <div class="audio-description">
+            <p>
+                We performed a simple grid search over the hyperparameters <b>k</b> (for k-sampling) and <b>t</b> (for temperature)
+                to determine a suitable configuration for expressive and varied generation. 
+            </p> 
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; text-align: center; align-items: center;">
+            <div></div>
+            <div>k=50</div>
+            <div>k=100</div>
+            <div>k=150</div>
+            <div>k=200</div>
+            <div>k=300</div>
+            <div>t=1.0</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.0/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <div>t=1.1</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.1/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <div>t=1.2</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.2/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <div>t=1.3</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.3/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <div>t=1.4</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.4/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <div>t=1.5</div>
+            <audio controls><source src="samples/hparam_search/k_50_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_100_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_150_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_200_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+            <audio controls><source src="samples/hparam_search/k_300_t_1.5/utts/Ingrid_txt_1_desc_1_6.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+    <h2 class="section-heading">Just for fun</h2>
+    <div class="audio-container">
+        <div class="audio-title">1,000 F0 Contours</div>
         <div class="audio-description">
             With default generation parameters, the model is highly consistent for fixed inputs. The figure below shows an overlay of 1,000 generated samples
             in a neutral speaking test, and the corresponding overlayed audio. 
@@ -450,7 +548,7 @@
         <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 10px;">
             <div style="min-width: 50px;">The person</div>
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/§The%20person_txt_3_desc_10_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_10_0.wav" type="audio/wav">
             </audio>
             <audio controls>
                 <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_13_0.wav" type="audio/wav">
@@ -460,8 +558,6 @@
             </audio>
         </div>
     </div>
-
-
 
     <footer>
     </footer>

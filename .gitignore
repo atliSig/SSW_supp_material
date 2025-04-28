@@ -5,4 +5,4 @@ samples/
 *.pyc
 # other:
 .DS_Store
-wavs.txt
+*.txt
