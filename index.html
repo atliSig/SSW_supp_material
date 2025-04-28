@@ -106,28 +106,62 @@
     <h2 style="text-align: center;">Supplementary material and samples</h2>
     </div>
 
-    <h2 class="section-heading">Checkpoint and Dataset</h2>
+    <h2 class="section-heading">Checkpoints and Datasets</h2>
     <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
         <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
-            <div class="audio-title">Model Checkpoint</div>
+            <div class="audio-title">Model Checkpoints</div>
             <div class="audio-description">
-                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">We make a hugging-face checkpoint, corresponding to T3-emotional, available on the HF hub. Follow installation instructions on HF to setup the model.</p>
-                <span style="margin-right: 5px;">🔗</span>
-                <a href="https://huggingface.co/atlithor/EmotiveIcelandic" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                    EmotiveIcelandic on HuggingFace
-                </a>
+                <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
+                    We make all model checkpoints available on HuggingFace. <b>EmotiveIcelandic</b> corresponds to <b>T3-emotional</b> in our paper.
+                    The <b>RepeatTTS</b> series of models corresponds to the different fine-tuned versions of <b>T3</b> in our paper. Follow installation 
+                    instructions on HF to setup the models.</p>
+                
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/atlithor/EmotiveIcelandic" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        EmotiveIcelandic
+                    </a>
+                </div>
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-1" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        RepeaTTS-level-1
+                    </a>
+                </div>
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-2" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        RepeaTTS-level-2
+                    </a>
+                </div>
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/atlithor/RepeaTTS-level-3" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        RepeaTTS-level-3
+                    </a>
+                </div>
             </div>
         </div>
         <div class="audio-container" style="flex: 1 1 320px; max-width: 400px; min-width: 260px;">
-            <div class="audio-title">Dataset</div>
+            <div class="audio-title">Datasets</div>
             <div class="audio-description">
                 <p style="margin-top: 10px; color: #555; font-size: 0.97em;">
-                    This is the dataset we use to fine-tune all our models. It is based on an Icelandic open-source corpus, with the addition of descriptive prompts for every utterance.
+                    All our datasets are based on an emotional Icelandic open-source corpus, with the addition of descriptive prompts for every utterance.
+                    <b>talromur3 with prompts</b> includes information about the rendered emotion, while <b>talromur3 without emotions</b> does not.
                 </p>
-                <span style="margin-right: 5px;">🔗</span>
-                <a href="https://huggingface.co/datasets/atlithor/talromur3_with_prompts" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
-                    talromur3_with_prompts on HuggingFace
-                </a>
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/datasets/atlithor/talromur3_with_prompts" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        talromur3_with_prompts
+                    </a>
+                </div>
+                <div>
+                    <span style="margin-right: 5px;">🤗</span>
+                    <a href="https://huggingface.co/datasets/atlithor/talromur3_without_emotions" target="_blank" style="color: #1976d2; text-decoration: underline; font-weight: bold;">
+                        talromur3_without_emotions
+                    </a>
+                    
+                </div>
             </div>
         </div>
     </div>
