@@ -29,6 +29,14 @@
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.2s;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 800px) {
+            .audio-container {
+            display: flex;
+            flex-wrap: nowrap;
+            }
         }
         
         .audio-container:hover {
@@ -84,6 +92,10 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
+        }
+
+        audio {
+            min-width: 125px;
         }
 
     </style>
@@ -171,10 +183,49 @@
         </div>
     </div>
 
+    <h2 class="section-heading">Prompt generation</h2>
+    <p>
+        We prompt Mistral-7B-Instruct-v0.2 to generate the description prompts used for training our models. Here is the full prompt used to train <b>T3-emotional</b>.
+    </p>
+    <code style="max-height: 500px; overflow-y: auto; background-color: #2d2d2d; color: #3498db; border-radius: 8px; display: block; padding: 25px;">
+        You will be given 7 descriptive keywords related to an audio sample of [speaker_name]'s speech. These keywords include:<br>
+        1. The gender (male, female)<br>
+        2. The level of reverberation (very distant-sounding, distant-sounding, slightly distant-sounding, slightly close-sounding, very close-sounding)<br>
+        3. The amount of noise in the sample (extremely noisy, very noisy, noisy, slightly noisy, almost no noise, very clear)<br>
+        4. The tone of the speaker's voice (very monotone, monotone, slightly expressive and animated, expressive and animated, very expressive and animated)<br>
+        5. The pace of the speaker's delivery (very slowly, slowly, slightly slowly, moderate speed, slightly fast, fast, very fast)<br>
+        6. The pitch of the speaker's voice (very low-pitch, low-pitch, slightly low-pitch, moderate pitch, slightly high-pitch, high-pitch, very high-pitch)<br>
+        7. The emotion of the speaker's voice. This could be one of 6: Happy, Sad, Angry, Surprised, Helpful or Neutral.<br>
+        This will also include the intensity of the emotion (for example:<br>
+        - neutral emotion: there is no particular emotion<br>
+        - high intensity sad emotion: the speaker is sad and the intensity of the emotion is high<br>
+        - medium intensity happy emotion: the speaker sounds happy and the intensity of that emotion is medium<br>
+        - low intensity surprised emotion: the speaker sounds a little bit surprised<br>
+        - very high intensity helpful emotion: the speaker sounds incredibly helpful<br>
+        ...)<br><br>
+
+        Your task is to create a text description using these keywords that accurately describes the speech sample.
+        If the amount of noise is 'very noisy' and the level of reverberation is 'very distant-sounding', you must include terms such as 'very poor recording' or `very bad recording` in the description.
+        Likewise, if the amount of noise is 'very clear' and the level of reverberation is 'very close-sounding', you must include terms like 'very good recording' or `excellent recording` in the description.
+        And you must always specify what the emotion of the speaker is, and the intensity of that emotion. For example, if the emotion of the speaker is "low intensity happy emotion", you must include terms like `slightly happy sounding` in the description.
+        Do not add extra details beyond what has been provided above. You can change the order of keywords, and replace synonymous terms.
+        <br><br>
+        For example, given the following keywords: 'female', 'slightly distant-sounding', 'noisy', 'very expressive and animated', 'very slowly', 'moderate pitch' and 'high intensity angry emotion' a valid description would be: '[speaker_name] speaks very slowly but has a very animated delivery. She sounds noticably angry. The recording is noisy and there is some roominess.'
+        Another valid description would be: 'In a noisy room, [speaker_name] delivers a very animated and expressive speech, at a very slow pace. [speaker_name] is audibly angry.'
+        Another valid description would be: '[speaker_name] enunciates a very expressive speech while clearly angry. Her voice is slightly distant-sounding, with some background noise present. [speaker_name] speaks very slowly with a moderate pitch but a very expressive tone.'
+        <br><br>
+        Note that the intensity of the speaker's emotion is sometimes specifically mentioned. This should not be confused with the speaker's tone. So, for example: the speaker might
+        be 'very expressive and animated' and have 'low intensity sad emotion'. In which case you have to describe the tone of voice as being expressive (e.g. '[speaker_name]'s tone is highly dynamic') while the intensity of the emotion is low (e.g. '[speaker_name] sounds a little bit sad')
+        <br><br>
+        Ensure that the generated description is grammatically correct, easy to understand, and concise. Only return one and only one description.
+        <br><br>
+        For the keywords: '[gender]', '[reverberation]', '[sdr_noise]', '[speech_monotony]', '[speaking_rate]', '[pitch]' and '[emotion]' the corresponding description is:
+    </code>
+
     <h2 class="section-heading">Emotional Synthesis</h2>
     <p>
         These samples are generated using <b>T3-emotional</b>. We synthesise the same text for all speakers and emotions.
-        The emotional intensity is set to 3 of 5, so in each case the model is prompted with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [emotion].</i>
+        The emotional intensity is set to 3 of 5, so in each case the model is prompted with, e.g. <i>"[speaker]'s voice sounds clear and close to the microphone. The [speaker] sounds [emotion]."</i>
     </p>
 
     <h3 class='audio-title'>Ingrid</h3>
@@ -313,8 +364,8 @@
     <h2 class="section-heading">Emotional Intensity</h2>
     <p>
         Emotional intensity labels are included in the training prompts for <b>T3-emotional</b>, which allow the model to synthesise emotions on a 5 point scale.
-        This is done by prompting the model with, e.g. <i>The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [intensity] [emotion]</i>
-        where [intensity] can be, for example, <i>extremely</i>, <i>somewhat</i>, <i>slightly</i> etc.
+        This is done by prompting the model with, e.g. <i>"The speaker's voice sounds clear and close to the microphone. The [speaker] sounds [intensity] [emotion]"</i>
+        where [intensity] can be, for example, <i>"extremely"</i>, <i>"somewhat"</i>, <i>"slightly"</i> etc.
     </p>
 
     <h3 class="audio-title">Sadness</h3>
@@ -449,44 +500,181 @@
         </div>
     </div>
 
-    <h2 class="section-heading">Prompt generation</h2>
+    <h2 class="section-heading">T3 Level 1: No emotional information</h2>
     <p>
-        We prompt Mistral-7B-Instruct-v0.2 to generate the description prompts used for training our models. Here is the full prompt used to train <b>T3-emotional</b>.
+        These samples are generated using <b>T3</b>. This model was trained on instruction prompts without any information about emotional content.
+        In this case, the prompts are:  <i>"[speaker] sounds very clear and close to the microphone."</i>. The model output is more varied than for <b>T3-emotional</b> 
+        since the model is still trained on emotional data without disclosure of the labels.
     </p>
-    <code style="max-height: 500px; overflow-y: auto; background-color: #2d2d2d; color: #3498db; border-radius: 8px; display: block; padding: 25px;">
-        You will be given 7 descriptive keywords related to an audio sample of [speaker_name]'s speech. These keywords include:<br>
-        1. The gender (male, female)<br>
-        2. The level of reverberation (very distant-sounding, distant-sounding, slightly distant-sounding, slightly close-sounding, very close-sounding)<br>
-        3. The amount of noise in the sample (extremely noisy, very noisy, noisy, slightly noisy, almost no noise, very clear)<br>
-        4. The tone of the speaker's voice (very monotone, monotone, slightly expressive and animated, expressive and animated, very expressive and animated)<br>
-        5. The pace of the speaker's delivery (very slowly, slowly, slightly slowly, moderate speed, slightly fast, fast, very fast)<br>
-        6. The pitch of the speaker's voice (very low-pitch, low-pitch, slightly low-pitch, moderate pitch, slightly high-pitch, high-pitch, very high-pitch)<br>
-        7. The emotion of the speaker's voice. This could be one of 6: Happy, Sad, Angry, Surprised, Helpful or Neutral.<br>
-        This will also include the intensity of the emotion (for example:<br>
-        - neutral emotion: there is no particular emotion<br>
-        - high intensity sad emotion: the speaker is sad and the intensity of the emotion is high<br>
-        - medium intensity happy emotion: the speaker sounds happy and the intensity of that emotion is medium<br>
-        - low intensity surprised emotion: the speaker sounds a little bit surprised<br>
-        - very high intensity helpful emotion: the speaker sounds incredibly helpful<br>
-        ...)<br><br>
 
-        Your task is to create a text description using these keywords that accurately describes the speech sample.
-        If the amount of noise is 'very noisy' and the level of reverberation is 'very distant-sounding', you must include terms such as 'very poor recording' or `very bad recording` in the description.
-        Likewise, if the amount of noise is 'very clear' and the level of reverberation is 'very close-sounding', you must include terms like 'very good recording' or `excellent recording` in the description.
-        And you must always specify what the emotion of the speaker is, and the intensity of that emotion. For example, if the emotion of the speaker is "low intensity happy emotion", you must include terms like `slightly happy sounding` in the description.
-        Do not add extra details beyond what has been provided above. You can change the order of keywords, and replace synonymous terms.
-        <br><br>
-        For example, given the following keywords: 'female', 'slightly distant-sounding', 'noisy', 'very expressive and animated', 'very slowly', 'moderate pitch' and 'high intensity angry emotion' a valid description would be: '[speaker_name] speaks very slowly but has a very animated delivery. She sounds noticably angry. The recording is noisy and there is some roominess.'
-        Another valid description would be: 'In a noisy room, [speaker_name] delivers a very animated and expressive speech, at a very slow pace. [speaker_name] is audibly angry.'
-        Another valid description would be: '[speaker_name] enunciates a very expressive speech while clearly angry. Her voice is slightly distant-sounding, with some background noise present. [speaker_name] speaks very slowly with a moderate pitch but a very expressive tone.'
-        <br><br>
-        Note that the intensity of the speaker's emotion is sometimes specifically mentioned. This should not be confused with the speaker's tone. So, for example: the speaker might
-        be 'very expressive and animated' and have 'low intensity sad emotion'. In which case you have to describe the tone of voice as being expressive (e.g. '[speaker_name]'s tone is highly dynamic') while the intensity of the emotion is low (e.g. '[speaker_name] sounds a little bit sad')
-        <br><br>
-        Ensure that the generated description is grammatically correct, easy to understand, and concise. Only return one and only one description.
-        <br><br>
-        For the keywords: '[gender]', '[reverberation]', '[sdr_noise]', '[speech_monotony]', '[speaking_rate]', '[pitch]' and '[emotion]' the corresponding description is:
-    </code>
+    <h3 class='audio-title'>Ingrid</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Ingrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Leif</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Leif_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Freya</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Freya_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Anders</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Anders_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Astrid</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Astrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Bjorn</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Bjorn_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Frida</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_1/utts/Frida_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h2 class="section-heading">T3 Level 2: Three classes of <i>intensity</i></h2>
+    <p>
+        These samples are generated using <b>T3</b> Level 2. This model has been further fine-tuned on a single speaker (Ingrid) subset of Talromur with
+        labels discovered from the output distribution. These labels roughly correspond to three different levels of vocal intensity. In this case, the prompts are:  
+        <i>"Ingrid sounds very clear and close to the microphone. [intensity information]."</i>, where [intensity information] can be empty or <i>"Ingrid's voice is at [medium/high] intensity"</i>
+    </p>
+
+    <h3 class='audio-title'>Label 1: no mention of intensity</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_no_intensity/utts/Ingrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Label 2: medium intensity is specified</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_medium_intensity/utts/Ingrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Label 3: high intensity is specified</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_2/quick_ingrid_high_intensity/utts/Ingrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h2 class="section-heading">T3 Level 3: A neutral label and two levels of intensity</h2>
+    <p>
+        These samples are generated using <b>T3</b> Level 3. This model has been further fine-tuned from Level 2 with the addition of a neutral speaking label, discovered from the output distribution of <b>T3</b> level 2.
+        <i>"Ingrid sounds very clear and close to the microphone. [label]."</i>, where [label] can be <i>"Ingrid's voice is neutral."</i> or <i>"Ingrid's voice is at [low/high] intensity."</i>
+    </p>
+
+    <h3 class='audio-title'>Label 1: voice is neutral</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_1_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Label 2: voice at low intensity</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_3_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
+
+    <h3 class='audio-title'>Label 2: voice at high intensity</h3>
+    <div class="audio-container">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; text-align: center;">
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_0.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_1.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_2.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_3.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_4.wav" type="audio/wav"></audio>
+            <audio controls><source src="used_samples/level_3/utts/Ingrid_txt_1_desc_2_5.wav" type="audio/wav"></audio>
+        </div>
+    </div>
 
     <h2 class="section-heading">Hyperparameter Search</h2>
     <div class="audio-container">
@@ -543,30 +731,28 @@
         </div>
     </div>
     <h2 class="section-heading">Just for fun</h2>
+    <h3 class="audio-title">1,000 F0 Contours</h3>
+    <p>
+        With default generation parameters, the model is highly consistent for fixed inputs. The figure below shows an overlay of 1,000 generated samples
+        in a neutral speaking test, and the corresponding overlayed audio. 
+    </p>
     <div class="audio-container">
-        <div class="audio-title">1,000 F0 Contours</div>
-        <div class="audio-description">
-            With default generation parameters, the model is highly consistent for fixed inputs. The figure below shows an overlay of 1,000 generated samples
-            in a neutral speaking test, and the corresponding overlayed audio. 
-        </div>
+
         <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center;">
             <div>
             <img src="plots/individual_f0_contours.png" alt="Individual F0 Contours" style="width: 100%; margin-bottom: 5px;">
             <p style="text-align: center; font-size: 0.9rem; color: #555;">Density of 1000 F0 contours</p>
             </div>
         </div>
-        <audio controls>
-            <source src="used_samples/for_fun/overlay.wav" type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
+        <audio controls><source src="used_samples/for_fun/overlay.wav" type="audio/wav"></audio>
     </div>
 
+    <h3 class="audio-title">Ambiguous speaker labels</h3>
+    <p>
+        Prompting the model with ambiguous speaker labels, such as <i>the man</i>, <i>the woman</i> or <i>the person</i>,
+        sometimes yields voices that are distinct from the training voices.
+    </p>
     <div class="audio-container">
-        <div class="audio-title">Ambiguous speaker labels</div>
-        <div class="audio-description">
-            Prompting the model with ambiguous speaker labels, such as <i>the man</i>, <i>the woman</i> or <i>the person</i>,
-            sometimes yields voices that are distinct from the training voices.
-        </div>
         <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 20px;">
             <div style="min-width: 50px;">The woman</div>
             <audio controls>
