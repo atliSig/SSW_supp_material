@@ -677,14 +677,12 @@
     </div>
 
     <h2 class="section-heading">Hyperparameter Search</h2>
+    <h3 class="audio-title">Grid Search for k and t</h3>
+    <p>
+        We performed a simple grid search over the hyperparameters <b>k</b> (for k-sampling) and <b>t</b> (for temperature)
+        to determine a suitable configuration for expressive and varied generation. 
+    </p> 
     <div class="audio-container">
-        <div class="audio-title">Grid Search for k and t</div>
-        <div class="audio-description">
-            <p>
-                We performed a simple grid search over the hyperparameters <b>k</b> (for k-sampling) and <b>t</b> (for temperature)
-                to determine a suitable configuration for expressive and varied generation. 
-            </p> 
-        </div>
         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; text-align: center; align-items: center;">
             <div></div>
             <div>k=50</div>
@@ -740,11 +738,11 @@
 
         <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center;">
             <div>
-            <img src="plots/individual_f0_contours.png" alt="Individual F0 Contours" style="width: 100%; margin-bottom: 5px;">
-            <p style="text-align: center; font-size: 0.9rem; color: #555;">Density of 1000 F0 contours</p>
+                <img src="plots/individual_f0_contours.png" alt="Individual F0 Contours" style="width: 100%; margin-bottom: 5px;">
+                <p style="text-align: center; font-size: 0.9rem; color: #555;">Density of 1000 F0 contours</p>
             </div>
+            <audio controls><source src="used_samples/for_fun/overlay.wav" type="audio/wav"></audio>
         </div>
-        <audio controls><source src="used_samples/for_fun/overlay.wav" type="audio/wav"></audio>
     </div>
 
     <h3 class="audio-title">Ambiguous speaker labels</h3>
@@ -753,46 +751,46 @@
         sometimes yields voices that are distinct from the training voices.
     </p>
     <div class="audio-container">
-        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 20px;">
-            <div style="min-width: 50px;">The woman</div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: center; align-items: center;">
+            <div>The woman</div>
+    
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_13_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20woman_txt_2_desc_13_0.wav" type="audio/wav">
             </audio>
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_14_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20woman_txt_2_desc_14_0.wav" type="audio/wav">
             </audio>
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The woman_txt_2_desc_10_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20woman_txt_2_desc_10_0.wav" type="audio/wav">
             </audio>
-        </div>
-        
-        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 20px;">
-            <div style="min-width: 50px;">The man</div>
+            
+    
+            <div>The man</div>
+            
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The man_txt_1_desc_14_0.wav" type="audio/wav">
-            </audio>
-            <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The man_txt_1_desc_10_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20man_txt_1_desc_10_0.wav" type="audio/wav">
             </audio>
             <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The man_txt_3_desc_4_0.wav" type="audio/wav">
+                <source src="used_samples/t3_all_emotions/utts/The%20man_txt_1_desc_14_0.wav" type="audio/wav">
             </audio>
-        </div>
-
-        <div style="display: flex; align-items: center; gap: 20px; text-align: center; padding-bottom: 10px;">
-            <div style="min-width: 50px;">The person</div>
-            <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_10_0.wav" type="audio/wav">
-            </audio>
-            <audio controls>
-                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_13_0.wav" type="audio/wav">
-            </audio>
-            <audio controls>
+                <audio controls>
                 <source src="used_samples/t3_all_emotions/utts/The%20man_txt_3_desc_4_0.wav" type="audio/wav">
+            </audio>
+
+            <div>The person</div>
+            
+            
+            <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_8_0.wav" type="audio/wav">
+            </audio>
+
+           <audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_13_0.wav" type="audio/wav">
+            </audio><audio controls>
+                <source src="used_samples/t3_all_emotions/utts/The%20person_txt_3_desc_10_0.wav" type="audio/wav">
             </audio>
         </div>
     </div>
-
     <footer>
     </footer>
 </body>
